@@ -35,7 +35,7 @@ public class JobScheduler {
             while ((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
 
-                // Split format: "1:25:4;500"
+                
                 String[] parts = line.split("[:;]");
                 if (parts.length == 4) {
                     int processId = Integer.parseInt(parts[0]);
