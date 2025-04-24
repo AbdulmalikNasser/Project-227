@@ -27,7 +27,7 @@ public class Loader implements Runnable {
 
                 pcb.setState(ProcessState.READY);
                 readyQueue.enqueue(pcb);
-                System.out.println("[Loader] Loaded into memory and enqueued: " + pcb);
+                
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
