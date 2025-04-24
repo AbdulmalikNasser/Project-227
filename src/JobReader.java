@@ -2,17 +2,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/*Reads jobs from a file and enqueues them into the provided ProcessQueue using simulated system calls.*/
 public class JobReader implements Runnable {
     private ProcessQueue jobQueue;
     private String fileName;
 
-   
     public JobReader(ProcessQueue jobQueue, String fileName) {
         this.jobQueue = jobQueue;
         this.fileName = fileName;
     }
 
+    @Override
     public void run() {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -27,13 +27,11 @@ public class JobReader implements Runnable {
                 int priority = Integer.parseInt(tokens[2]);
                 int memory   = Integer.parseInt(tokens[3]);
 
-               
-                PCB pcb = new PCB(id, burst, priority, memory);
-                pcb.setState(ProcessState.READY);
+                // Use system call to create the process
+                PCB pcb = SysCall.createProcess(id, burst, priority, memory);
 
-               
-                jobQueue.enqueue(pcb);
-               
+                // Use system call to enqueue into job queue
+                SysCall.enqueueJob(jobQueue, pcb);
             }
         } catch (IOException e) {
             System.err.println("[JobReader] I/O error reading " + fileName + ": " + e.getMessage());
@@ -42,3 +40,4 @@ public class JobReader implements Runnable {
         }
     }
 }
+
