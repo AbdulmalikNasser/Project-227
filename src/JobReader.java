@@ -33,7 +33,7 @@ public class JobReader implements Runnable {
 
                
                 jobQueue.enqueue(pcb);
-                System.out.println("[JobReader] Enqueued: " + pcb);
+               
             }
         } catch (IOException e) {
             System.err.println("[JobReader] I/O error reading " + fileName + ": " + e.getMessage());
