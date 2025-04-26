@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-/**
- * Main driver: loop for multiple scheduling runs with simulated system calls.
- */
+//Main driver: loop for multiple scheduling runs with simulated system calls.
+ 
 public class Main {
     private static final String fileName = "C:\\Users\\USER01\\Desktop\\CSC227\\job.txt";
 
@@ -91,9 +90,8 @@ public class Main {
         System.out.printf("Average turnaround time: %.2f ms%n", sumTurnaround / total);
     }
 
-    /**
-     * First-Come-First-Serve: take each PCB and run it to completion.
-     */
+    //First-Come-First-Serve: take each PCB and run it to completion.
+     
     private static void runFCFS(ProcessQueue jobQueue,ProcessQueue readyQueue,Loader loader) {
         System.out.println("--- FCFS Scheduling ---");
         int currentTime = 0;
@@ -131,9 +129,8 @@ public class Main {
         printStats(sumWaiting, sumTurnaround, totalProcessed);
     }
 
-    /**
-     * Round-Robin: run each PCB for up to quantum ms, re-enqueue if not done.
-     */
+    // Round-Robin: run each PCB for up to quantum ms, re-enqueue if not done.
+     
     private static void runRR(ProcessQueue jobQueue,
                               ProcessQueue readyQueue,
                               Loader loader,
@@ -179,9 +176,8 @@ public class Main {
         printStats(sumWaiting, sumTurnaround, totalProcessed);
     }
 
-    /**
-     * Priority scheduling with starvation detection (wait > priority).
-     */
+    // Priority scheduling with starvation detection (wait > priority).
+     
     private static void runPriority(ProcessQueue jobQueue,
                                     ProcessQueue readyQueue,
                                     Loader loader) {
