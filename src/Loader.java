@@ -34,7 +34,7 @@ public class Loader implements Runnable {
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            System.out.println("[Loader] Interrupted, terminating.");
+            
         }
     }
 
