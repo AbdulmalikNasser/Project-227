@@ -26,11 +26,18 @@ public class Loader implements Runnable {
                 // Dequeue a process from the job queue
                 PCB pcb = jobQueue.dequeue();
 
-                // System call: allocate memory (blocks if insufficient)
-                SysCall.allocateMemory(this, pcb);
-
-                // System call: enqueue into ready queue
-                SysCall.enqueueReady(readyQueue, pcb);
+             //blocking memory allocation
+                synchronized (memoryLock) {
+                    // wait until enough freeMemory exists
+                    while (pcb.getMemoryRequired() > freeMemory) {
+                        memoryLock.wait();
+                    }
+                    // allocate it
+                    freeMemory -= pcb.getMemoryRequired();
+                }
+                // now the job can enter READY
+                pcb.setState(ProcessState.READY);
+                readyQueue.enqueue(pcb);
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
