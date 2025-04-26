@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/*Reads jobs from a file and enqueues them into the provided ProcessQueue using simulated system calls.*/
+//Reads jobs from a file and enqueues them into the provided ProcessQueue using simulated system calls
 public class JobReader implements Runnable {
     private ProcessQueue jobQueue;
     private String fileName;
@@ -12,7 +12,7 @@ public class JobReader implements Runnable {
         this.fileName = fileName;
     }
 
-    @Override
+   
     public void run() {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
